@@ -136,18 +136,22 @@ int main()
     }
 
     int line_index = 0;
+    int word_index = 0;
 
     while (fgets(line, 100, stdin) != NULL && line_index < line_count)
     {
-        char *token = strtok(line, " \0");
-        if (token != NULL)
+        char *token = strtok(line, " \n\0");
+        if (token != NULL) {
             do
             {
-                printf("Slovo %d: ", line_index);
+                printf("Slovo %d: ", word_index);
                 process_string(token);
+                word_index++;
             } while ((token = strtok(NULL, " \0")) != NULL);
+            
+            line_index++;
+        }
 
-        line_index++;
     }
     return 0;
 }
